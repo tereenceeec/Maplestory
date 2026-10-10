@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MapleStory Item Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <p class="eyebrow">Community tracker</p>
+        <h1>MapleStory Item Board</h1>
+        <p class="lede">
+          Search items, post a screenshot icon, and keep last sold mesos with the previous sale as a reference.
+        </p>
+      </header>
+
+      <div id="setup-banner" class="banner hidden" role="status"></div>
+      <div id="error-banner" class="banner banner-error hidden" role="alert"></div>
+
+      <section class="toolbar">
+        <label class="search-field">
+          <span class="sr-only">Search items</span>
+          <input
+            id="search"
+            type="search"
+            placeholder="Type an item name…"
+            autocomplete="off"
+            disabled
+          />
+        </label>
+        <button id="add-btn" class="btn primary" type="button" disabled>Add item</button>
+      </section>
+
+      <p id="status-line" class="status-line">Connecting…</p>
+      <ul id="item-grid" class="item-grid"></ul>
+    </div>
+
+    <dialog id="item-dialog" class="dialog">
+      <form id="item-form" class="dialog-form">
+        <h2 id="dialog-title">Add item</h2>
+        <input type="hidden" id="item-id" />
+
+        <label>
+          Item name
+          <input id="item-name" name="name" maxlength="80" required />
+        </label>
+
+        <label>
+          Icon screenshot
+          <input id="item-icon" name="icon" type="file" accept="image/png,image/jpeg,image/webp" />
+        </label>
+        <p id="icon-hint" class="hint">PNG, JPEG, or WebP. Resized in the browser to a small thumbnail.</p>
+        <div id="icon-preview-wrap" class="icon-preview-wrap hidden">
+          <img id="icon-preview" alt="Icon preview" />
+        </div>
+
+        <label>
+          Last sold price (mesos)
+          <input id="item-price" name="price" type="text" inputmode="numeric" required placeholder="e.g. 150000000" />
+        </label>
+
+        <label>
+          Edit password
+          <input id="item-password" name="password" type="password" autocomplete="current-password" required />
+        </label>
+
+        <p id="form-error" class="form-error hidden"></p>
+
+        <div class="dialog-actions">
+          <button type="button" class="btn" id="cancel-btn">Cancel</button>
+          <button type="submit" class="btn primary" id="save-btn">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
